@@ -16,14 +16,84 @@
     TitleCharacterCasing="Normal"
     mc:Ignorable="d">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Button Width="100" Height="50">Press Me!</Button>
-            <ComboBox Width="125" Height="50">
-                <ComboBoxItem>1</ComboBoxItem>
-                <ComboBoxItem>2</ComboBoxItem>
-                <ComboBoxItem>3</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <Button
+                x:Name="NewBudgetButton"
+                Grid.Column="2"
+                Width="50"
+                Height="50"
+                Margin="5"
+                Background="{StaticResource MahApps.Brushes.Accent}"
+                Click="NewBudgetButton_Click"
+                Style="{StaticResource MahApps.Styles.Button.Circle}">
+                <mah:FontIcon
+                    FontFamily="Segoe MDL2 Assets"
+                    Foreground="White"
+                    Glyph="&#xE710;" />
+            </Button>
+
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="180.667" />
+                <ColumnDefinition Width="19.333" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions />
+
+            <StackPanel
+                x:Name="BudgetStackPanel"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Orientation="Vertical"
+                Visibility="Collapsed">
+                <DatePicker
+                    x:Name="StartDatePicker"
+                    Margin="3"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="Start Date" />
+                <DatePicker
+                    x:Name="EndDatePicker"
+                    Margin="3"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="End Date" />
+                <TextBox
+                    x:Name="MonthBudgetTextBox"
+                    Margin="3"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="Total Monthly Budget" />
+            </StackPanel>
+        </Grid>
+
+
+
+
+
+
+
+
+        <StatusBar Grid.Row="2">
+            <StatusBarItem FontSize="18">Remaining Monthly Budget</StatusBarItem>
+            <StatusBarItem>
+                <TextBlock FontSize="18" Text="{Binding RemainingBalance}" />
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </mah:MetroWindow>
