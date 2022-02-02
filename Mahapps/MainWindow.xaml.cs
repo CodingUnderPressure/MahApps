@@ -53,6 +53,17 @@ namespace Mahapps
             };
 
             budgets.Add(budget);
+
+            UpdateFlyout.CloseButtonVisibility = Visibility.Hidden;
+
+            BudgetStackPanel.Visibility = Visibility.Collapsed;
+
+            UpdateFlyout.IsOpen = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateFlyout.IsOpen = true;
         }
     }
 }

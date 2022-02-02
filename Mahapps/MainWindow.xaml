@@ -93,7 +93,24 @@
 
 
 
-
+        <mah:FlyoutsControl>
+            <mah:Flyout
+                x:Name="UpdateFlyout"
+                Width="1000px"
+                AutoCloseInterval="2000"
+                Header=""
+                IsAutoCloseEnabled="True"
+                Position="Top">
+                <TextBlock
+                    Width="500px"
+                    Margin="-275,0,0,0"
+                    Padding="10"
+                    FontSize="24"
+                    TextAlignment="Center">
+                    Budget Created!
+                </TextBlock>
+            </mah:Flyout>
+        </mah:FlyoutsControl>
 
 
         <StatusBar Grid.Row="2">
