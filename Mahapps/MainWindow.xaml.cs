@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Mahapps
     {
         public string RemainingBalance { get; set; }
 
-        public List<Budget> budgets;
+        public ObservableCollection<Budget> budgets;
 
         public MainWindow()
         {
@@ -34,7 +35,7 @@ namespace Mahapps
             double balance = 1600;
             RemainingBalance = $"${balance}";
 
-            budgets = new List<Budget>();
+            budgets = new ObservableCollection<Budget>();
         }
 
         private void NewBudgetButton_Click(object sender, RoutedEventArgs e)
@@ -53,6 +54,8 @@ namespace Mahapps
             };
 
             budgets.Add(budget);
+
+            BudgetListView.ItemsSource = budgets;
 
             UpdateFlyout.CloseButtonVisibility = Visibility.Hidden;
 
