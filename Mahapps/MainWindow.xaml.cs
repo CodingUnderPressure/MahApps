@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Mahapps.Business_Logic;
 
 namespace Mahapps
 {
@@ -46,6 +47,14 @@ namespace Mahapps
 
         private void CreateBudgetButton_Click(object sender, RoutedEventArgs e)
         {
+            string errorMessage = BudgetValidation.ValidateBudget(TotalBudgetTextBox.Text, StartDatePicker.SelectedDate, EndDatePicker.SelectedDate);
+
+            if(errorMessage != "")
+            {
+                ShowError(errorMessage);
+                return;
+            }
+
             Budget budget = new Budget
             {
                 StartDate = (DateTime)StartDatePicker.SelectedDate,
@@ -57,6 +66,32 @@ namespace Mahapps
 
             BudgetListView.ItemsSource = budgets;
 
+            ShowSuccess();
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateFlyout.IsOpen = true;
+        }
+
+        private void ShowError(string error)
+        {
+            UpdateFlyout.Background = Brushes.Red;
+
+            FlyoutTextBlock.Text = error;
+
+            UpdateFlyout.CloseButtonVisibility = Visibility.Hidden;
+
+            UpdateFlyout.IsOpen = true;
+        }
+
+        private void ShowSuccess()
+        {
+            UpdateFlyout.Background = Brushes.Green;
+
+            FlyoutTextBlock.Text = "Successfully Added Budget!";
+
             UpdateFlyout.CloseButtonVisibility = Visibility.Hidden;
 
             BudgetStackPanel.Visibility = Visibility.Collapsed;
@@ -64,9 +99,6 @@ namespace Mahapps
             UpdateFlyout.IsOpen = true;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateFlyout.IsOpen = true;
-        }
+
     }
 }

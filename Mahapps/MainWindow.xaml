@@ -17,7 +17,7 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -111,11 +111,12 @@
             <mah:Flyout
                 x:Name="UpdateFlyout"
                 Width="1000px"
-                AutoCloseInterval="2000"
+                AutoCloseInterval="3000"
                 Header=""
                 IsAutoCloseEnabled="True"
                 Position="Top">
                 <TextBlock
+                    x:Name="FlyoutTextBlock"
                     Width="500px"
                     Margin="-275,0,0,0"
                     Padding="10"
