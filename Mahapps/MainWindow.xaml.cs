@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Mahapps.Business_Logic;
+using Mahapps.Data;
 
 namespace Mahapps
 {
@@ -65,6 +66,8 @@ namespace Mahapps
             budgets.Add(budget);
 
             BudgetListView.ItemsSource = budgets;
+
+            BudgetData.AddBudgetToDb(budget);
 
             ShowSuccess();
         }
