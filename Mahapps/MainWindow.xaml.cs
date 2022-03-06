@@ -37,7 +37,11 @@ namespace Mahapps
             double balance = 1600;
             RemainingBalance = $"${balance}";
 
-            budgets = new ObservableCollection<Budget>();
+            budgets = new ObservableCollection<Budget>(BudgetData.GetBudgets());
+
+            BudgetListView.ItemsSource = budgets;
+
+
         }
 
         private void NewBudgetButton_Click(object sender, RoutedEventArgs e)

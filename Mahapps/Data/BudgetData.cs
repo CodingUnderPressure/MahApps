@@ -17,5 +17,13 @@ namespace Mahapps.Data
                 db.SaveChanges();
             }
         }
+
+        public static List<Budget> GetBudgets()
+        {
+            using(var db = new BudgetContext())
+            {
+                return db.budgets.OrderBy(b => b.Id).ToList();
+            }
+        }
     }
 }
