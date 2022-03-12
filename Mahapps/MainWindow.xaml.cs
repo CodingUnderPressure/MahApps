@@ -29,13 +29,12 @@ namespace Mahapps
 
         public ObservableCollection<Budget> budgets;
 
+        private Budget selectedItem;
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-
-            double balance = 1600;
-            RemainingBalance = $"${balance}";
 
             budgets = new ObservableCollection<Budget>(BudgetData.GetBudgets());
 
@@ -106,6 +105,13 @@ namespace Mahapps
             UpdateFlyout.IsOpen = true;
         }
 
+        private void BudgetListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedItem = (Budget)BudgetListView.SelectedItem;
+           
+            RemainingBalance = $"${selectedItem.BudgetAmount}";
 
+            RemainingBudgetTextBlock.Text = RemainingBalance;
+        }
     }
 }

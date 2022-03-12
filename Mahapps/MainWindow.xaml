@@ -7,8 +7,8 @@
     xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MyBudget"
-    Width="800"
-    Height="450"
+    Width="1100"
+    Height="575"
     BorderBrush="{DynamicResource MahApps.Brushes.Accent}"
     BorderThickness="5"
     Icon="/Images/cash.ico"
@@ -62,7 +62,8 @@
             <ListView
                 x:Name="BudgetListView"
                 Grid.Column="0"
-                BorderThickness="1">
+                BorderThickness="1"
+                SelectionChanged="BudgetListView_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding StartDate}" Header="Start Date" />
@@ -131,7 +132,10 @@
         <StatusBar Grid.Row="2">
             <StatusBarItem FontSize="18">Remaining Monthly Budget</StatusBarItem>
             <StatusBarItem>
-                <TextBlock FontSize="18" Text="{Binding RemainingBalance}" />
+                <TextBlock
+                    x:Name="RemainingBudgetTextBlock"
+                    FontSize="18"
+                    Text="{Binding RemainingBalance}" />
             </StatusBarItem>
         </StatusBar>
     </Grid>
