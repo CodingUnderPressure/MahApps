@@ -42,6 +42,7 @@
                 Click="NewBudgetButton_Click"
                 Style="{StaticResource MahApps.Styles.Button.Circle}">
                 <mah:FontIcon
+                    x:Name="AddButtonFontIcon"
                     FontFamily="Segoe MDL2 Assets"
                     Foreground="White"
                     Glyph="&#xE710;" />
@@ -52,10 +53,10 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="180.667" />
-                <ColumnDefinition Width="19.333" />
+                <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions />
 
@@ -69,6 +70,19 @@
                         <GridViewColumn DisplayMemberBinding="{Binding StartDate}" Header="Start Date" />
                         <GridViewColumn DisplayMemberBinding="{Binding EndDate}" Header="End Date" />
                         <GridViewColumn DisplayMemberBinding="{Binding BudgetAmount}" Header="Budget Amount" />
+                        <GridViewColumn Width="50" Header="Edit">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button>
+                                        <mah:FontIcon
+                                            x:Name="AddButtonFontIcon"
+                                            FontFamily="Segoe MDL2 Assets"
+                                            Foreground="{StaticResource MahApps.Brushes.Accent}"
+                                            Glyph="&#xE70F;" />
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

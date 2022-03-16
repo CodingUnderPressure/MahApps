@@ -46,7 +46,15 @@ namespace Mahapps
         private void NewBudgetButton_Click(object sender, RoutedEventArgs e)
         {
             if (BudgetStackPanel.Visibility == Visibility.Collapsed)
+            {
                 BudgetStackPanel.Visibility = Visibility.Visible;
+                AddButtonFontIcon.Glyph = "\uE738";
+            }
+            else
+            {
+                BudgetStackPanel.Visibility = Visibility.Collapsed;
+                AddButtonFontIcon.Glyph = "\uE710";
+            }
         }
 
         private void CreateBudgetButton_Click(object sender, RoutedEventArgs e)
