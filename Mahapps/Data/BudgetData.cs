@@ -25,5 +25,17 @@ namespace Mahapps.Data
                 return db.budgets.OrderBy(b => b.Id).ToList();
             }
         }
+
+        public static void UpdateBudgetinDb(int budgetKey, DateTime startDate, DateTime endDate, string budgetAmount)
+        {
+            using(var db = new BudgetContext())
+            {
+                Budget budget = db.budgets.Find(budgetKey);
+                budget.StartDate = startDate;
+                budget.EndDate = endDate;
+                budget.BudgetAmount = double.Parse(budgetAmount);
+                db.SaveChanges();
+            }
+        }
     }
 }

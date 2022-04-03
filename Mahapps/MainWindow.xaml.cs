@@ -31,6 +31,8 @@ namespace Mahapps
 
         private Budget selectedItem;
 
+        private int budgetId;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -67,20 +69,40 @@ namespace Mahapps
                 return;
             }
 
-            Budget budget = new Budget
+            if(CreateBudgetButton.Content.ToString() == "Create Budget")
             {
-                StartDate = (DateTime)StartDatePicker.SelectedDate,
-                EndDate = (DateTime)EndDatePicker.SelectedDate,
-                BudgetAmount = double.Parse(TotalBudgetTextBox.Text)
-            };
+                Budget budget = new Budget
+                {
+                    StartDate = (DateTime)StartDatePicker.SelectedDate,
+                    EndDate = (DateTime)EndDatePicker.SelectedDate,
+                    BudgetAmount = double.Parse(TotalBudgetTextBox.Text)
+                };
 
-            budgets.Add(budget);
+                budgets.Add(budget);
 
-            BudgetListView.ItemsSource = budgets;
+                BudgetListView.ItemsSource = budgets;
 
-            BudgetData.AddBudgetToDb(budget);
+                BudgetData.AddBudgetToDb(budget);
 
-            ShowSuccess();
+                ShowSuccess();
+
+            }
+            else
+            {
+                BudgetData.UpdateBudgetinDb(budgetId, (DateTime)StartDatePicker.SelectedDate, (DateTime)EndDatePicker.SelectedDate, TotalBudgetTextBox.Text);
+
+                StartDatePicker.SelectedDate = null;
+                EndDatePicker.SelectedDate = null;
+                TotalBudgetTextBox.Text = null;
+
+                BudgetStackPanel.Visibility = Visibility.Collapsed;
+                CancelUpdateButton.Visibility = Visibility.Hidden;
+
+                ShowSuccessUpdate();
+
+            }
+
+
         }
 
 
@@ -113,6 +135,19 @@ namespace Mahapps
             UpdateFlyout.IsOpen = true;
         }
 
+        private void ShowSuccessUpdate()
+        {
+            UpdateFlyout.Background = Brushes.Green;
+
+            FlyoutTextBlock.Text = "Successfully Updated Budget!";
+
+            UpdateFlyout.CloseButtonVisibility = Visibility.Hidden;
+
+            BudgetStackPanel.Visibility = Visibility.Collapsed;
+
+            UpdateFlyout.IsOpen = true;
+        }
+
         private void BudgetListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedItem = (Budget)BudgetListView.SelectedItem;
@@ -120,6 +155,34 @@ namespace Mahapps
             RemainingBalance = $"${selectedItem.BudgetAmount}";
 
             RemainingBudgetTextBlock.Text = RemainingBalance;
+        }
+
+        private void EditBudgetButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+
+            Budget budget = b.CommandParameter as Budget;
+
+            StartDatePicker.SelectedDate = budget.StartDate;
+            EndDatePicker.SelectedDate = budget.EndDate;
+            TotalBudgetTextBox.Text = budget.BudgetAmount.ToString();
+
+            BudgetStackPanel.Visibility = Visibility.Visible;
+            CancelUpdateButton.Visibility = Visibility.Visible;
+
+            CreateBudgetButton.Content = "Update Budget";
+
+            budgetId = budget.Id;
+        }
+
+        private void CancelUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartDatePicker.SelectedDate = null;
+            EndDatePicker.SelectedDate = null;
+            TotalBudgetTextBox.Text = null;
+
+            BudgetStackPanel.Visibility = Visibility.Collapsed;
+            CancelUpdateButton.Visibility = Visibility.Hidden;
         }
     }
 }

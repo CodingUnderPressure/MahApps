@@ -73,7 +73,10 @@
                         <GridViewColumn Width="50" Header="Edit">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button>
+                                    <Button
+                                        x:Name="EditBudgetButton"
+                                        Click="EditBudgetButton_Click"
+                                        CommandParameter="{Binding}">
                                         <mah:FontIcon
                                             x:Name="AddButtonFontIcon"
                                             FontFamily="Segoe MDL2 Assets"
@@ -115,6 +118,17 @@
                     Click="CreateBudgetButton_Click"
                     Content="Create Budget"
                     Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
+                <Button
+                    x:Name="CancelUpdateButton"
+                    Margin="0,5"
+                    mah:ControlsHelper.ContentCharacterCasing="Normal"
+                    Background="Red"
+                    Click="CancelUpdateButton_Click"
+                    Content="Cancel Edit"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Style="{StaticResource MahApps.Styles.Button.Square}"
+                    Visibility="Hidden" />
             </StackPanel>
         </Grid>
 
