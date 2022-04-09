@@ -155,6 +155,8 @@ namespace Mahapps
             RemainingBalance = $"${selectedItem.BudgetAmount}";
 
             RemainingBudgetTextBlock.Text = RemainingBalance;
+
+            AddExpenseButton.Visibility = Visibility.Visible;
         }
 
         private void EditBudgetButton_Click(object sender, RoutedEventArgs e)
@@ -183,6 +185,11 @@ namespace Mahapps
 
             BudgetStackPanel.Visibility = Visibility.Collapsed;
             CancelUpdateButton.Visibility = Visibility.Hidden;
+        }
+
+        private void AddExpenseButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

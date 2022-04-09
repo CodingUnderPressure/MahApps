@@ -90,6 +90,17 @@
                 </ListView.View>
             </ListView>
 
+            <StackPanel Grid.Column="1">
+                <Button
+                    x:Name="AddExpenseButton"
+                    Margin="50,0"
+                    mah:ControlsHelper.ContentCharacterCasing="Normal"
+                    Click="AddExpenseButton_Click"
+                    Content="Add an Expense"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                    Visibility="Hidden" />
+            </StackPanel>
+
             <StackPanel
                 x:Name="BudgetStackPanel"
                 Grid.Column="2"
@@ -129,6 +140,30 @@
                     Foreground="White"
                     Style="{StaticResource MahApps.Styles.Button.Square}"
                     Visibility="Hidden" />
+            </StackPanel>
+
+            <StackPanel
+                x:Name="ExpenseStackPanel"
+                Grid.Column="2"
+                Orientation="Vertical"
+                Visibility="Hidden">
+                <TextBox
+                    x:Name="ExpenseTitleTextBox"
+                    Margin="3"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="Expense Title" />
+                <TextBox
+                    x:Name="ExpenseAmountTextBox"
+                    Margin="3"
+                    mah:TextBoxHelper.UseFloatingWatermark="True"
+                    mah:TextBoxHelper.Watermark="Expense Amount" />
+
+                <Button
+                    x:Name="CreateExpenseButton"
+                    Margin="3"
+                    mah:ControlsHelper.ContentCharacterCasing="Normal"
+                    Content="Create Expense"
+                    Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
             </StackPanel>
         </Grid>
 

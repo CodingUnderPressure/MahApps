@@ -199,9 +199,14 @@
     <Compile Include="Migrations\20220223235213_Initial.designer.cs">
       <DependentUpon>20220223235213_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20220405221548_AddExpense.cs" />
+    <Compile Include="Migrations\20220405221548_AddExpense.designer.cs">
+      <DependentUpon>20220405221548_AddExpense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BudgetContextModelSnapshot.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\BudgetContext.cs" />
+    <Compile Include="Models\Expense.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
