@@ -105,7 +105,6 @@ namespace Mahapps
 
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             UpdateFlyout.IsOpen = true;
@@ -189,7 +188,28 @@ namespace Mahapps
 
         private void AddExpenseButton_Click(object sender, RoutedEventArgs e)
         {
+            ExpenseStackPanel.Visibility = Visibility.Visible;
+        }
 
+        private void CreateExpenseButton_Click(object sender, RoutedEventArgs e)
+        {
+            string errors = BudgetValidation.ValidateExpense(ExpenseTitleTextBox.Text, ExpenseAmountTextBox.Text);
+
+            if(errors == "")
+            {
+                Expense expense = new Expense
+                {
+                    BudgetId = selectedItem.Id,
+                    Title = ExpenseTitleTextBox.Text,
+                    Amount = double.Parse(ExpenseAmountTextBox.Text)
+                };
+
+                BudgetData.AddExpenseToDB(expense);
+            }
+            else
+            {
+                ShowError(errors);
+            }
         }
     }
 }

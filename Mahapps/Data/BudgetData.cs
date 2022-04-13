@@ -18,6 +18,15 @@ namespace Mahapps.Data
             }
         }
 
+        public static void AddExpenseToDB(Expense expense)
+        {
+            using(var db = new BudgetContext())
+            {
+                db.Add(expense);
+                db.SaveChanges();
+            }
+        }
+
         public static List<Budget> GetBudgets()
         {
             using(var db = new BudgetContext())

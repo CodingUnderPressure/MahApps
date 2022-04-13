@@ -162,6 +162,7 @@
                     x:Name="CreateExpenseButton"
                     Margin="3"
                     mah:ControlsHelper.ContentCharacterCasing="Normal"
+                    Click="CreateExpenseButton_Click"
                     Content="Create Expense"
                     Style="{StaticResource MahApps.Styles.Button.Square.Accent}" />
             </StackPanel>

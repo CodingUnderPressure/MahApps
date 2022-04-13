@@ -53,5 +53,37 @@ namespace Mahapps.Business_Logic
 
             return errors;
         }
+
+        public static string ValidateExpense(string title, string amount)
+        {
+            string errors = "";
+            
+            // Make sure title isn't blank
+            if(title == "" || title == null)
+            {
+                errors += "Invalid Title \n";
+            }
+
+            // Make sure amount is valid
+            if(amount != "" || amount == null)
+            {
+                double val;
+
+                bool isNum = double.TryParse(amount, out val);
+
+                if (isNum == false)
+                {
+                    errors += "Expense Amount Invalid \n";
+                }
+            }
+            else
+            {
+                errors += "Invalid Amount \n";
+            }
+
+            return errors;
+            
+
+        }
     }
 }
