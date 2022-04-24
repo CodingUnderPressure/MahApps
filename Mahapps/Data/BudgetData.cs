@@ -35,6 +35,14 @@ namespace Mahapps.Data
             }
         }
 
+        public static List<Expense> GetExpenses(int budgetId)
+        {
+            using(var db = new BudgetContext())
+            {
+                return db.expenses.Where(x => x.BudgetId == budgetId).OrderBy(x => x.Id).ToList();
+            }
+        }
+
         public static void UpdateBudgetinDb(int budgetKey, DateTime startDate, DateTime endDate, string budgetAmount)
         {
             using(var db = new BudgetContext())

@@ -99,6 +99,15 @@
                     Content="Add an Expense"
                     Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
                     Visibility="Hidden" />
+
+                <ListView x:Name="ExpensesListView" Grid.Column="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Title" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Amount}" Header="Amount" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
 
             <StackPanel

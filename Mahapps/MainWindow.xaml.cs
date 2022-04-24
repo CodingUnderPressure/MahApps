@@ -156,6 +156,8 @@ namespace Mahapps
             RemainingBudgetTextBlock.Text = RemainingBalance;
 
             AddExpenseButton.Visibility = Visibility.Visible;
+
+            ExpensesListView.ItemsSource = BudgetData.GetExpenses(selectedItem.Id);
         }
 
         private void EditBudgetButton_Click(object sender, RoutedEventArgs e)
@@ -205,6 +207,9 @@ namespace Mahapps
                 };
 
                 BudgetData.AddExpenseToDB(expense);
+
+                ExpensesListView.ItemsSource = BudgetData.GetExpenses(selectedItem.Id);
+
             }
             else
             {
